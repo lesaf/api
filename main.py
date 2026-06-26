@@ -128,7 +128,7 @@ h1{font-size:26px;font-weight:700;letter-spacing:-0.4px;margin-bottom:6px;line-h
 </head>
 <body>
 <div class="header">
-  <a class="logo" href="/"><div class="logo-icon">🏠</div>HomeOffer</a>
+  <a class="logo" href="/"><div class="logo-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 9.5L12 3L21 9.5V20C21 20.55 20.55 21 20 21H15V15H9V21H4C3.45 21 3 20.55 3 20V9.5Z" fill="#1A1A1A" opacity="0.85"/><circle cx="10" cy="12" r="1.2" fill="#F5C842"/><circle cx="14" cy="12" r="1.2" fill="#F5C842"/><circle cx="12" cy="15" r="1.2" fill="#F5C842"/></svg></div>HomeOffer</a>
   <div class="header-sep"></div>
   <div class="header-label">Проверка контрагента</div>
 </div>
@@ -228,7 +228,7 @@ body{{font-family:'Inter',sans-serif;background:#FAFAF8;color:#1A1A1A;min-height
 </head>
 <body>
 <div class="header">
-  <a class="logo" href="/"><div class="logo-icon">🏠</div>HomeOffer</a>
+  <a class="logo" href="/"><div class="logo-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 9.5L12 3L21 9.5V20C21 20.55 20.55 21 20 21H15V15H9V21H4C3.45 21 3 20.55 3 20V9.5Z" fill="#1A1A1A" opacity="0.85"/><circle cx="10" cy="12" r="1.2" fill="#F5C842"/><circle cx="14" cy="12" r="1.2" fill="#F5C842"/><circle cx="12" cy="15" r="1.2" fill="#F5C842"/></svg></div>HomeOffer</a>
   <div class="header-sep"></div>
   <a href="/" class="back">← Новая проверка</a>
 </div>
