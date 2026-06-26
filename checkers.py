@@ -1,5 +1,5 @@
 """
-Асинхронные парсеры по 6 открытым государственным реестрам.
+Асинхронные парсеры по 7 открытым государственным реестрам.
 """
 import asyncio
 import re
@@ -178,7 +178,63 @@ async def check_fsin(client, last, first, mid):
         return CheckResult(name, url, "error", f"Недоступен: {str(e)[:80]}")
 
 
+async def check_sudrf(client, last, first, mid):
+    """ГАС Правосудие — суды общей юрисдикции (разводы, алименты, кредиты, уголовные дела)."""
+    name = "ГАС Правосудие — суды общей юрисдикции"
+    url = "https://sudrf.ru/index.php?id=300"
+    full = f"{last} {first} {mid}".strip()
+    try:
+        # Поиск по судебным делам через форму sudrf.ru
+        r = await client.get(
+            "https://sudrf.ru/index.php",
+            params={
+                "id": "300",
+                "act": "go_ms_search",
+                "searchtype": "MS",
+                "delo_id": "1540006",
+                "U_UCHASTNIK": full,
+                "ok": "Найти",
+            },
+            headers={**HEADERS, "Referer": "https://sudrf.ru/"},
+            timeout=TIMEOUT,
+        )
+        soup = BeautifulSoup(r.text, "lxml")
+
+        # Ищем результаты
+        no_result = soup.find(string=re.compile(r"не найдено|ничего не найдено|записей не найдено", re.I))
+        if no_result:
+            return CheckResult(name, url, "clean", "Судебных дел не найдено")
+
+        # Таблица с результатами
+        result_table = soup.find("table", class_=re.compile(r"res|result|delo|case", re.I))
+        if result_table:
+            rows = [row for row in result_table.find_all("tr")[1:] if row.find("td")]
+            if rows:
+                return CheckResult(name, url, "found",
+                    f"Найдено судебных дел: {len(rows)} — требуется ручная проверка")
+
+        # Альтернативный поиск через РосПравосудие (открытый агрегатор)
+        r2 = await client.get(
+            "https://bsr.sudrf.ru/bigs/portal.html",
+            params={"name": full, "type": "CRIMINAL,CIVIL,ADMIN"},
+            headers={**HEADERS, "Referer": "https://bsr.sudrf.ru/"},
+            timeout=TIMEOUT,
+        )
+        soup2 = BeautifulSoup(r2.text, "lxml")
+        count_el = soup2.find(string=re.compile(r"Найдено.*?(\d+)", re.I))
+        if count_el:
+            m = re.search(r"(\d+)", count_el)
+            if m and int(m.group(1)) > 0:
+                return CheckResult(name, url, "found",
+                    f"Найдено судебных дел: {m.group(1)}")
+
+        return CheckResult(name, url, "clean", "Судебных дел не найдено")
+    except Exception as e:
+        return CheckResult(name, url, "error", f"Недоступен: {str(e)[:80]}")
+
+
 async def check_all(last: str, first: str, mid: str, dob: str, inn: str = "") -> list:
+    """Параллельная проверка по всем 7 источникам."""
     async with httpx.AsyncClient(headers=HEADERS, follow_redirects=True, timeout=TIMEOUT) as client:
         results = await asyncio.gather(
             check_fedresurs(client, last, first, mid, inn),
@@ -187,6 +243,7 @@ async def check_all(last: str, first: str, mid: str, dob: str, inn: str = "") ->
             check_fssp_crime(client, last, first, mid),
             check_rosfin(client, last, first, mid, dob),
             check_fsin(client, last, first, mid),
+            check_sudrf(client, last, first, mid),
             return_exceptions=False,
         )
     return list(results)
