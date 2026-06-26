@@ -85,8 +85,7 @@ body{font-family:'Inter',sans-serif;background:#FAFAF8;color:#1A1A1A;min-height:
 
 /* Шапка — как у HomeOffer */
 .header{background:#fff;border-bottom:1px solid #F0F0EC;padding:0 28px;height:58px;display:flex;align-items:center;gap:12px}
-.logo{display:flex;align-items:center;gap:8px;font-size:17px;font-weight:700;color:#1A1A1A;text-decoration:none}
-.logo-icon{width:32px;height:32px;background:#F5C842;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:16px}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none}
 .header-sep{width:1px;height:20px;background:#E5E5E0;margin:0 4px}
 .header-label{font-size:13px;color:#6B7280;font-weight:500}
 
@@ -128,7 +127,27 @@ h1{font-size:26px;font-weight:700;letter-spacing:-0.4px;margin-bottom:6px;line-h
 </head>
 <body>
 <div class="header">
-  <a class="logo" href="/"><div class="logo-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 9.5L12 3L21 9.5V20C21 20.55 20.55 21 20 21H15V15H9V21H4C3.45 21 3 20.55 3 20V9.5Z" fill="#1A1A1A" opacity="0.85"/><circle cx="10" cy="12" r="1.2" fill="#F5C842"/><circle cx="14" cy="12" r="1.2" fill="#F5C842"/><circle cx="12" cy="15" r="1.2" fill="#F5C842"/></svg></div>HomeOffer</a>
+  <a class="logo" href="/">
+    <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <!-- Жёлтый домик-пятиугольник -->
+      <path d="M18 2L34 13V36H2V13L18 2Z" fill="url(#hg)" rx="6"/>
+      <defs><linearGradient id="hg" x1="18" y1="2" x2="18" y2="36" gradientUnits="userSpaceOnUse">
+        <stop offset="0%" stop-color="#FFD95A"/>
+        <stop offset="100%" stop-color="#F5C040"/>
+      </linearGradient></defs>
+      <!-- Крыша (треугольник поверх) -->
+      <path d="M18 2L34 14H2L18 2Z" fill="#F0B830"/>
+      <!-- Монетки: стопка 3 диска -->
+      <ellipse cx="15" cy="26" rx="5" ry="2" fill="#3D3D3D"/>
+      <rect x="10" y="22" width="10" height="4" rx="2" fill="#3D3D3D"/>
+      <ellipse cx="15" cy="22" rx="5" ry="2" fill="#555"/>
+      <rect x="10" y="18" width="10" height="4" rx="2" fill="#555"/>
+      <ellipse cx="15" cy="18" rx="5" ry="2" fill="#666"/>
+      <!-- Шар справа -->
+      <circle cx="24" cy="24" r="5" fill="#3D3D3D"/>
+    </svg>
+    <span style="font-family:Georgia,serif;font-size:19px;font-weight:700;color:#333;letter-spacing:-0.2px">HomeOffer</span>
+  </a>
   <div class="header-sep"></div>
   <div class="header-label">Проверка контрагента</div>
 </div>
@@ -208,8 +227,7 @@ def render_result(data: dict) -> str:
 *,*::before,*::after{{box-sizing:border-box;margin:0;padding:0}}
 body{{font-family:'Inter',sans-serif;background:#FAFAF8;color:#1A1A1A;min-height:100vh}}
 .header{{background:#fff;border-bottom:1px solid #F0F0EC;padding:0 28px;height:58px;display:flex;align-items:center;gap:12px}}
-.logo{{display:flex;align-items:center;gap:8px;font-size:17px;font-weight:700;color:#1A1A1A;text-decoration:none}}
-.logo-icon{{width:32px;height:32px;background:#F5C842;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:16px}}
+.logo{{display:flex;align-items:center;gap:10px;text-decoration:none}}
 .header-sep{{width:1px;height:20px;background:#E5E5E0}}
 .back{{font-size:13px;color:#6B7280;text-decoration:none;font-weight:500}}
 .back:hover{{color:#1A1A1A}}
@@ -228,7 +246,27 @@ body{{font-family:'Inter',sans-serif;background:#FAFAF8;color:#1A1A1A;min-height
 </head>
 <body>
 <div class="header">
-  <a class="logo" href="/"><div class="logo-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 9.5L12 3L21 9.5V20C21 20.55 20.55 21 20 21H15V15H9V21H4C3.45 21 3 20.55 3 20V9.5Z" fill="#1A1A1A" opacity="0.85"/><circle cx="10" cy="12" r="1.2" fill="#F5C842"/><circle cx="14" cy="12" r="1.2" fill="#F5C842"/><circle cx="12" cy="15" r="1.2" fill="#F5C842"/></svg></div>HomeOffer</a>
+  <a class="logo" href="/">
+    <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <!-- Жёлтый домик-пятиугольник -->
+      <path d="M18 2L34 13V36H2V13L18 2Z" fill="url(#hg)" rx="6"/>
+      <defs><linearGradient id="hg" x1="18" y1="2" x2="18" y2="36" gradientUnits="userSpaceOnUse">
+        <stop offset="0%" stop-color="#FFD95A"/>
+        <stop offset="100%" stop-color="#F5C040"/>
+      </linearGradient></defs>
+      <!-- Крыша (треугольник поверх) -->
+      <path d="M18 2L34 14H2L18 2Z" fill="#F0B830"/>
+      <!-- Монетки: стопка 3 диска -->
+      <ellipse cx="15" cy="26" rx="5" ry="2" fill="#3D3D3D"/>
+      <rect x="10" y="22" width="10" height="4" rx="2" fill="#3D3D3D"/>
+      <ellipse cx="15" cy="22" rx="5" ry="2" fill="#555"/>
+      <rect x="10" y="18" width="10" height="4" rx="2" fill="#555"/>
+      <ellipse cx="15" cy="18" rx="5" ry="2" fill="#666"/>
+      <!-- Шар справа -->
+      <circle cx="24" cy="24" r="5" fill="#3D3D3D"/>
+    </svg>
+    <span style="font-family:Georgia,serif;font-size:19px;font-weight:700;color:#333;letter-spacing:-0.2px">HomeOffer</span>
+  </a>
   <div class="header-sep"></div>
   <a href="/" class="back">← Новая проверка</a>
 </div>
